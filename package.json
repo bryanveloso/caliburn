@@ -2,6 +2,9 @@
   "name": "caliburn",
   "version": "0.0.0",
   "description": "The Websockets of Avalon.",
+  "engines": {
+    "node": "0.12.x"
+  },
   "main": "index.js",
   "author": "Bryan Veloso",
   "scripts": {
