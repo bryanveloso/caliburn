@@ -4,6 +4,9 @@
   "description": "The Websockets of Avalon.",
   "main": "index.js",
   "author": "Bryan Veloso",
+  "scripts": {
+    "start": "node index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "express": "^4.12.3",
