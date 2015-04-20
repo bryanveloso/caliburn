@@ -4,5 +4,8 @@
   "description": "The Websockets of Avalon.",
   "main": "index.js",
   "author": "Bryan Veloso",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^0.7.1"
+  }
 }
