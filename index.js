@@ -17,6 +17,13 @@ console.log('socket.io server created');
 io.on('connection', function(socket) {
   console.log('socket.io connection open');
 
+  // Events.
+  // Subscription sending/receiving.
+  socket.on('subscription sent', function(data, fn) {
+    io.emit('subscription received', data);
+  });
+
+  // Cleanup.
   socket.on('close', function() {
     console.log('socket.io connection closed');
   });
