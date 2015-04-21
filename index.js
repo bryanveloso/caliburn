@@ -21,9 +21,24 @@ io.on('connection', function(socket) {
   winston.log('Socket.io connection opened.');
 
   // Events.
-  // Subscription sending/receiving.
-  socket.on('subscription sent', function(data, fn) {
+  // Subscription event sending/receiving.
+  socket.on('subscription sent', function(data) {
     io.emit('subscription received', data);
+  });
+
+  // Resubscription event sending/receiving.
+  socket.on('resubscription sent', function(data) {
+    io.emit('resubscription received', data);
+  });
+
+  // Substreak event sending/receiving.
+  socket.on('substreak sent', function(data) {
+    io.emit('substreak received', data);
+  });
+
+  // Donation event sending/receiving.
+  socket.on('donation sent', function(data) {
+    io.emit('donation received', data);
   });
 
   // Cleanup.
