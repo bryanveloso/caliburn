@@ -45,6 +45,12 @@ io.on('connection', function(socket) {
     console.log 'donation received!'
   });
 
+  // Host event sending/receiving.
+  socket.on('host sent', function(data) {
+    io.emit('host received', data);
+    console.log 'host received!'
+  });
+
   // Cleanup.
   socket.on('close', function() {
     console.log('socket.io connection closed');
