@@ -11,11 +11,11 @@ app.use(express.static(__dirname + '/'));
 
 // Instantiate a server.
 var server = http.createServer(app).listen(port);
-console.debug('HTTP server listening on %d.', port);
+console.log('HTTP server listening on %d.', port);
 
 // Instantiate socket.io.
 var io = require('socket.io')(server);
-console.debug('Socket.io server created.');
+console.log('Socket.io server created.');
 
 io.on('connection', function(socket) {
   console.log('Socket.io connection opened.');
