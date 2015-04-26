@@ -11,14 +11,14 @@ app.use(express.static(__dirname + '/'));
 
 // Instantiate a server.
 var server = http.createServer(app).listen(port);
-winston.debug('HTTP server listening on %d.', port);
+console.debug('HTTP server listening on %d.', port);
 
 // Instantiate socket.io.
 var io = require('socket.io')(server);
-winston.debug('Socket.io server created.');
+console.debug('Socket.io server created.');
 
 io.on('connection', function(socket) {
-  winston.log('Socket.io connection opened.');
+  console.log('Socket.io connection opened.');
 
   // Events.
   // Subscription event sending/receiving.
