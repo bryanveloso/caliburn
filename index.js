@@ -24,21 +24,25 @@ io.on('connection', function(socket) {
   // Subscription event sending/receiving.
   socket.on('subscription sent', function(data) {
     io.emit('subscription received', data);
+    console.log 'subscription received!'
   });
 
   // Resubscription event sending/receiving.
   socket.on('resubscription sent', function(data) {
     io.emit('resubscription received', data);
+    console.log 'resubscription received!'
   });
 
   // Substreak event sending/receiving.
   socket.on('substreak sent', function(data) {
     io.emit('substreak received', data);
+    console.log 'substreak received!'
   });
 
   // Donation event sending/receiving.
   socket.on('donation sent', function(data) {
     io.emit('donation received', data);
+    console.log 'donation received!'
   });
 
   // Cleanup.
