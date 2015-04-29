@@ -34,3 +34,9 @@ io.on('connection', function(socket) {
     winston.info('Socket.io connection closed.', {id: socket.id});
   });
 });
+
+// Configure keep-alive.
+app.get('/', function(req, res) {
+  res.status(200).type('json');
+  res.json({greeting: "Hello. I am a socket."}).end();
+});
