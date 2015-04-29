@@ -40,3 +40,10 @@ app.get('/', function(req, res) {
   res.status(200).type('json');
   res.json({greeting: "Hello. I am a socket."}).end();
 });
+
+// Keep the app alive.
+var schedule = require('node-schedule');
+var request = require('request');
+var job = schedule.scheduleJob('0 */5 * * * *', function() {
+  request.get('https://caliburn.herokuapp.com/');
+});
