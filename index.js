@@ -5,54 +5,32 @@ var port = process.env.PORT || 5000;
 
 // Logging.
 var winston = require('winston');
+winston.level = 'debug';
 
 // Configure express.
 app.use(express.static(__dirname + '/'));
 
 // Instantiate a server.
 var server = http.createServer(app).listen(port);
-console.log('HTTP server listening on %d.', port);
+winston.info('HTTP server listening on port %d.', port);
 
 // Instantiate socket.io.
 var io = require('socket.io')(server);
-console.log('Socket.io server created.');
+winston.info('Socket.io server created.');
 
 io.on('connection', function(socket) {
-  console.log('Socket.io connection opened.');
+  winston.info('Socket.io connection opened.', {id: socket.id});
 
   // Events.
   // Subscription event sending/receiving.
-  socket.on('subscription sent', function(data) {
-    io.emit('subscription received', data);
-    console.log('subscription received!');
-  });
-
-  // Resubscription event sending/receiving.
-  socket.on('resubscription sent', function(data) {
-    io.emit('resubscription received', data);
-    console.log('resubscription received!');
-  });
-
-  // Substreak event sending/receiving.
-  socket.on('substreak sent', function(data) {
-    io.emit('substreak received', data);
-    console.log('substreak received!');
-  });
-
-  // Donation event sending/receiving.
-  socket.on('donation sent', function(data) {
-    io.emit('donation received', data);
-    console.log('donation received!');
-  });
-
-  // Host event sending/receiving.
-  socket.on('host sent', function(data) {
-    io.emit('host received', data);
-    console.log('host received!');
+  socket.on('event sent', function(data) {
+    winston.debug('Event "' + data.event + '" received.', {data: data});
+    socket.broadcast.emit(data.event + ' received', data);
+    socket.emit(data.event + ' received', data);
   });
 
   // Cleanup.
   socket.on('close', function() {
-    console.log('socket.io connection closed');
+    winston.info('Socket.io connection closed.', {id: socket.id});
   });
 });
