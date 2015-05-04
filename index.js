@@ -25,8 +25,7 @@ io.on('connection', function(socket) {
   // Subscription event sending/receiving.
   socket.on('event sent', function(data) {
     winston.debug('Event "' + data.event + '" received.', {data: data});
-    socket.broadcast.emit('event received', data);
-    socket.emit('event received', data);
+    io.sockets.emit('event received', data);
   });
 
   // Cleanup.
